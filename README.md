@@ -27,10 +27,16 @@ How to work with NICS-3D:
 * “Suffix”: An additional suffix to be added to the name of the file that will be created.
 3) Once you have launched your files will be created. Note that due to Gaussian restrictions the system will automatically split the input files it creates if the number of dummy atoms is 50,000 or more. The molecule and setting remain the same in the split files and each contains a portion of the dummy atoms. The system is configured to read and recombine these files while it extracts the data so as long as you do not change their names there shouldn’t be any issues.
 4) After the calculations have finished load the results back to the NICS-3D tool and go to the “Extract” tab. From there select the mode from the drop-down menu and click on the “Launch Extraction” button. A new folder will be created in the same directory as the files you have selected, one for each unique molecule, and a csv with the results will be created there. If you wish to preview the results before you plot them mark the “Create Images” checkbox before you launch. This takes time, and the tool may appear to be frozen while the plotting is running. A progress bar should pop up to show you the status.
+  
 Format of csv output:
-“X” “Y”	z1	z2	z3	z4    …	  zf
-x1	y1	Value	Value	Value	…	Value
+“X” “Y”	  z1	  z2	  z3  …	  zf
+
+x1  y1	Value	Value	Value	…	Value
+
 x1	y2	Value	Value	Value	…	Value
+
 x2	y1	Value	Value	Value	…	Value
+
 …	  …  	…  	  …	    …	    …	  …
+
 x1	y1	Value	Value	Value	…	Value
