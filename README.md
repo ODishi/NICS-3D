@@ -1,5 +1,7 @@
 # NICS-3D
 
+THIS SHOULD BE CONSIDERED AS AN ALPHA. THIS HASN'T BEEN TESTED BY USERS YET!
+
 This is my first attempt ever at publishing code. I am not a programmer nor do I have any background in CS. I am a chemist that dabbles with coding and that wished to share the tools I have written with any who may find them to be useful. All this is to say that I CANNOT and DO NOT offer any warranty for the results you produce with it.
 NICS-3D uses the “orient.py” module that was written by Shane M. Parker as part of the orient-molecule repository (https://github.com/smparker/orient-molecule/tree/master). I have made slight modifications to the output that this module produces so it will fit my code, but the rest of the code remains as it was originally written.
 
