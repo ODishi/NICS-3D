@@ -1,9 +1,25 @@
 ########################################################################################################################
-## V1.0.0
-## 
+## V1.0.1
+##
+## Changelog:
+## - Made compatible with both Python2 and Python3
 
-import Tkinter, Tkconstants, tkFileDialog, tkMessageBox, ttk, os, math, extract
-from Tkinter import *
+import sys
+
+if sys.version_info[0] == 3: py3 = True
+else: py3 = False
+
+if py3:
+    import tkinter as Tkinter
+    import tkinter.constants as Tkconstants
+    import tkinter.filedialog as tkFileDialog
+    import tkinter.messagebox as tkMessageBox
+    import tkinter.ttk as ttk
+    import os, math, extract
+    from tkinter import *
+else:
+    import Tkinter, Tkconstants, tkFileDialog, tkMessageBox, ttk, os, math, extract
+    from Tkinter import *
 
 class gui: #create gui
 
@@ -19,13 +35,13 @@ class gui: #create gui
     def updateUserSettings(self): # creates/updates last file pathway traker
         settingsFile=open(self.tracker,'w')
         fileData=[]
-        for key in self.userSetting.keys():
+        for key in list(self.userSetting.keys()):
             fileData.append(str(key) + '=' + str(self.userSetting[key]) + '\n')
         settingsFile.writelines(fileData)
         settingsFile.close
 
     def updateSettingsTab(self):
-        for key in self.userSetting.keys():
+        for key in list(self.userSetting.keys()):
             if (self.userSetting[key] == 'True') or (self.userSetting[key] == 'False'):
                 self.settingVars['Checkbox ' + key].set(eval(self.userSetting[key]))
                 try: self.top.change_entry_state(self.top.child_objects['Entry ' + key], self.settingVars['Checkbox ' + key])
@@ -73,18 +89,18 @@ class gui: #create gui
 
     def launch_extraction(self):
         uniques = dict()
-        for key in self.top.Files.keys():
+        for key in list(self.top.Files.keys()):
             f_name = self.top.Files[key]
             file_name = f_name.split('/')[-1]
             if 'Part' not in key:
                 file_short_name = file_name.split('.')[0]
             else:
                 file_short_name = file_name.split('Part')[0]
-            if file_short_name not in uniques.keys():
+            if file_short_name not in list(uniques.keys()):
                 uniques[file_short_name] = []
             uniques[file_short_name] += [f_name]
         mode = self.top.child_objects['Combobox extract'].get()
-        for key in uniques.keys():
+        for key in list(uniques.keys()):
             extract.process(key, uniques[key], mode, self.settingVars['Checkbox print'].get())
 
     def closeAll(self): # method to ensure that everything dies with the root
@@ -123,7 +139,7 @@ class gui: #create gui
             func()
 
     def print_var(self, var):
-        print var.get()
+        print(var.get())
 
     def configRunSettings(self):
         if self.settingVars['Checkbox bf'].get():
@@ -182,7 +198,7 @@ class gui: #create gui
     def launch(self):
         self.configRunSettings()
         self.runSettings['Files'] = []
-        for key in self.top.Files.keys():
+        for key in list(self.top.Files.keys()):
             f1 = g16File(self.top.Files[key])
             f1.xyzReorient()
             os.remove(f1.xyzName)
@@ -359,7 +375,7 @@ class gui: #create gui
             row = 0,
             column = 0
         )
-        if ('Checkbox print') not in self.settingVars.keys():
+        if ('Checkbox print') not in list(self.settingVars.keys()):
             self.settingVars['Checkbox print'] = Tkinter.BooleanVar()
             self.settingVars['Checkbox print'].set(False)
         self.top.child_objects['Checkbox print'] = self.top.add_checkbox(
@@ -412,7 +428,7 @@ class gui: #create gui
             sticky='new'
             )
         if add_CB:
-            if ('Checkbox ' + id_tag) not in self.settingVars.keys():
+            if ('Checkbox ' + id_tag) not in list(self.settingVars.keys()):
                 self.settingVars['Checkbox ' + id_tag] = Tkinter.BooleanVar()
                 self.settingVars['Checkbox ' + id_tag].set(True)
             parent.child_objects['Checkbox ' + id_tag] = parent.add_checkbox(
@@ -447,7 +463,7 @@ class gui: #create gui
                 row = row
                 )
             if enable_value is not None:
-                if ('Combobox ' + id_tag) not in self.settingVars.keys():
+                if ('Combobox ' + id_tag) not in list(self.settingVars.keys()):
                     self.settingVars['Combobox ' + id_tag] = Tkinter.BooleanVar()
 
                 def update_status():
@@ -467,7 +483,8 @@ class gui: #create gui
 
     def __init__(self):
         import platform
-        self.location = os.path.dirname(os.path.realpath(__file__))
+        if py3: self.location = os.path.dirname(os.path.realpath(__name__))
+        else: self.location = os.path.dirname(os.path.realpath(__file__))
         if platform.system() == 'Linux':
             self.tracker = self.location + '/Settings' #tracker file location for last opened directory
         elif platform.system() == 'Windows':
@@ -487,7 +504,7 @@ class gui: #create gui
     class windows: #creation of windows
 
         def centerScreen(self, w, h, scw, sch, w_shift, h_shift): # get syntax for positioning in center of the screen
-            return str(w)+'x'+str(h)+'+'+str(((scw/2) - w/2) + w_shift)+'+'+str(((sch/2) - h/2) + h_shift)
+            return str(w)+'x'+str(h)+'+'+str(int(((scw/2) - w/2) + w_shift))+'+'+str(int(((sch/2) - h/2) + h_shift))
 
         def __init__(self, title, width = 400, height = 400, hor_shift = 0, ver_shift = 0):
             self.title = title
