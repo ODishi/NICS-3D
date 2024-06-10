@@ -8,10 +8,9 @@ NICS-3D uses the “orient.py” module that was written by Shane M. Parker as p
 NICS-3D was developed by me for the use of my research group with the aim of creating 3D grids of dummy atoms around a molecule and processing the results to give a 4D matrix of the NICS values across the molecule. This tool includes a graphic user interface (GUI) and designed to work on both Linux and Windows with the intent of providing a user-friendly experience to people that prefer not to work using a terminal or command prompt.
 
 Requirements and specifications:
-1) Python 2.7.xx (I used 18).
-2) The ability to run Gaussian calculations (09 or 16).
-3) The numpy and matplotlib modules. You can run the “Install.bat” provided to install them.
-4) All of the modules that are in the repository (“orient.py” and “extract.pyc”).
+1) The ability to run Gaussian calculations (09 or 16).
+2) The numpy and matplotlib modules. You can run the “Install_Modules_YOUR_OS” provided to install them.
+3) All of the modules that are in the repository (“orient.py” and “extract.pyc”).
 
 How to work with NICS-3D:
 1) Run the “NICS-3D.pyw” script and in the GUI that opens use the “File->Open” to select the files you with to work with. Acceptable input files are “.com” and “.log” files. In the latter case the geometry will be taken from the last instance.
