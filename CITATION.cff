@@ -1,0 +1,22 @@
+# This CITATION.cff file was generated with cffinit.
+# Visit https://bit.ly/cffinit to generate yours today!
+
+cff-version: 1.2.0
+title: NICS-3D
+message: >-
+  If you use this software, please cite it using the
+  metadata from this file.
+type: software
+authors:
+  - given-names: Or
+    family-names: Dishi
+    email: or.dishi@mail.huji.ac.il
+    orcid: 'https://orcid.org/0000-0002-5496-2171'
+    affiliation: The Hebrew University of Jerusalem
+repository-code: 'https://github.com/ODishi/NICS-3D'
+keywords:
+  - NICS
+  - Aromaticity
+  - visualization
+  - Gaussian16
+license: MIT
